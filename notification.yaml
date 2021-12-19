@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-deployment
+spec:
+  selector:
+    matchLabels:
+      app: notification
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: notification
+    spec:
+      containers:
+      - name: notification
+        image: npsan0330/notification:v2
+        env:
+        - name: TWILIO_SID
+          valueFrom:
+            secretKeyRef:
+              name: cdap-secret
+              key: twilio-sid
+        - name: TWILIO_AUTH_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: cdap-secret
+              key: twilio-auth-token
+        - name: TWILIO_PHONE_NUMBER
+          valueFrom:
+            configMapKeyRef:
+              name: cdap-config
+              key: twilio-phone-number
+        - name: rabbitMQURL
+          valueFrom:
+            configMapKeyRef:
+              name: cdap-config
+              key: twilio-phone-number
+        - name: RABBIT_MQ_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: cdap-config
+              key: rabbit-mq-host
+        - name: RABBIT_MQ_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: cdap-config
+              key: rabbit-mq-port
+        - name: RABBIT_MQ_USER
+          valueFrom:
+            configMapKeyRef:
+              name: cdap-config
+              key: rabbit-mq-user
+        - name: RABBIT_MQ_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: cdap-config
+              key: rabbit-mq-password
