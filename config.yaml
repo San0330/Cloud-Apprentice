@@ -2,8 +2,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: cdap-config
+  namespace: cdap
 data:
-  rabbit-mq-host: "172.17.0.3"
+  rabbit-mq-host: "172.17.0.4"
   rabbit-mq-port: "5672"
   rabbit-mq-user: "guest"
   rabbit-mq-password: "guest"

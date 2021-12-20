@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rabbitmq-deployment
+  namespace: cdap
 spec:
   selector:
     matchLabels:
@@ -23,6 +24,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: rabbitmq-service
+  namespace: cdap
 spec:
   selector:
     app: rabbitmq
