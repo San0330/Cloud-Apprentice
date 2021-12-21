@@ -35,7 +35,7 @@ orderBtns.forEach((orderBtn) => {
 
     try {
       let data = await fetchWithRetry(
-        `http://192.168.49.2:30101/orders?name=${name}&phone=${phone}`,
+        `http://tech-products.com/api/orders?name=${name}&phone=${phone}`,
         5
       );
       alert(data.message);
